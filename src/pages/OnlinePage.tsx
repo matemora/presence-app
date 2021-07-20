@@ -62,6 +62,7 @@ export function OnlinePage() {
             {onlineUsers.filter(user => user.state === 'online').map(user => (
                 <p key={user.name}>{user.name}</p>
             ))}
+            <button onClick={() => history.push('/other')}>Ir para outra página</button>
         </div>
     );
 }
