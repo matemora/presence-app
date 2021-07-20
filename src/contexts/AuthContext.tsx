@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { createContext, useState } from "react";
-import { auth, firebase } from '../services/firebase';
+import { auth, database, firebase } from '../services/firebase';
 
 type User = {
   id: string;
@@ -58,6 +58,10 @@ export const AuthContextProvider: FC = ({children}) => {
   }
 
   async function signOut() {
+    await database.ref('/status/' + user?.id).set({
+      name: user?.name,
+      status: 'offline',
+    });
     await auth.signOut();
     setUser(undefined);
   }

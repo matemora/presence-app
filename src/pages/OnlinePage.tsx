@@ -9,7 +9,7 @@ interface UserOnlineInfo {
 }
 
 export function OnlinePage() {
-    const { user } = useAuth();
+    const { user, signOut } = useAuth();
     const history = useHistory();
     const [onlineUsers, setOnlineUsers] = useState<UserOnlineInfo[]>([]);
 
@@ -63,6 +63,7 @@ export function OnlinePage() {
                 <p key={user.name}>{user.name}</p>
             ))}
             <button onClick={() => history.push('/other')}>Ir para outra página</button>
+            <button onClick={() => signOut()}>Logout</button>
         </div>
     );
 }
